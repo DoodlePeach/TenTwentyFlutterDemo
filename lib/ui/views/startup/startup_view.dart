@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tentweny_demo/ui/common/ui_helpers.dart';
 
-import 'startup_viewmodel.dart';
+import '../startup/startup_viewmodel.dart';
 
 class StartupView extends StackedView<StartupViewModel> {
   const StartupView({Key? key}) : super(key: key);

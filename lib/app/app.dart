@@ -1,17 +1,20 @@
 import 'package:tentweny_demo/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:tentweny_demo/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:tentweny_demo/ui/views/home/home_view.dart';
-import 'package:tentweny_demo/ui/views/startup/startup_view.dart';
+import 'package:tentweny_demo/ui/views/watch/watch_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:tentweny_demo/services/api_service.dart';
+import 'package:tentweny_demo/ui/views/startup/startup_view.dart';
+import 'package:tentweny_demo/ui/views/watch/watch_view.dart';
 // @stacked-import
 
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
-    // @stacked-route
+    MaterialRoute(page: WatchView),
+// @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
