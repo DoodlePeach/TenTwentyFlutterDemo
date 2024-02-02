@@ -7,6 +7,8 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:tentweny_demo/services/api_service.dart';
 import 'package:tentweny_demo/ui/views/startup/startup_view.dart';
 import 'package:tentweny_demo/ui/views/watch/watch_view.dart';
+import 'package:tentweny_demo/ui/views/movie_detail/movie_detail_view.dart';
+import 'package:tentweny_demo/ui/views/trailer/trailer_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -14,6 +16,8 @@ import 'package:tentweny_demo/ui/views/watch/watch_view.dart';
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
     MaterialRoute(page: WatchView),
+    MaterialRoute(page: MovieDetailView),
+    MaterialRoute(page: TrailerView),
 // @stacked-route
   ],
   dependencies: [

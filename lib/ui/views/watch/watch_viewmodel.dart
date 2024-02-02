@@ -1,22 +1,27 @@
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:tentweny_demo/app/app.locator.dart';
+import 'package:tentweny_demo/app/app.router.dart';
+import 'package:tentweny_demo/models/movie_models.dart';
+import 'package:tentweny_demo/services/api_service.dart';
 
 class WatchViewModel extends BaseViewModel {
+  final api = locator<ApiService>();
+  final navigator = locator<NavigationService>();
+
+  MoviesResponse? currentResponse;
+
   bool searchBoolean = false;
-  List<int> searchIndexList = [];
+  List<Movie> filtered = [];
   String title = "Watch";
 
-  final List<String> list = [
-    'English Textbook',
-    'Japanese Textbook',
-    'English Vocabulary',
-    'Japanese Vocabulary'
-  ];
-
   void onSearchTextFieldChanged(String s) {
-    searchIndexList = [];
-    for (int i = 0; i < list.length; i++) {
-      if (list[i].contains(s)) {
-        searchIndexList.add(i);
+    filtered = [];
+    for (int i = 0; i < (currentResponse?.results.length ?? 0); i++) {
+      if (currentResponse!.results[i].title
+          .toLowerCase()
+          .contains(s.toLowerCase())) {
+        filtered.add(currentResponse!.results[i]);
       }
     }
 
@@ -25,14 +30,30 @@ class WatchViewModel extends BaseViewModel {
 
   void onSearchButtonPressed() {
     searchBoolean = true;
-    searchIndexList = [];
+    filtered
+      ..clear()
+      ..addAll(currentResponse?.results ?? []);
 
     notifyListeners();
   }
 
   void onClearButtonPressed() {
     searchBoolean = false;
+    filtered.clear();
 
     notifyListeners();
+  }
+
+  void fetchUpcoming() async {
+    await runBusyFuture(
+      () async {
+        currentResponse = await api.upcoming();
+      }(),
+      busyObject: 'upcoming',
+    );
+  }
+
+  void onMovieTapped(Movie movie) {
+    navigator.navigateToMovieDetailView(movie: movie);
   }
 }
