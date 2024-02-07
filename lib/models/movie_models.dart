@@ -4,8 +4,8 @@ part 'movie_models.g.dart';
 
 @JsonSerializable()
 class Dates {
-  String maximum;
-  String minimum;
+  String? maximum;
+  String? minimum;
 
   Dates({required this.maximum, required this.minimum});
 
@@ -15,28 +15,28 @@ class Dates {
 
 @JsonSerializable()
 class Movie {
-  bool adult;
+  bool? adult;
   @JsonKey(name: 'backdrop_path')
-  String backdropPath;
+  String? backdropPath;
   @JsonKey(name: 'genre_ids')
-  List<int> genreIds;
-  int id;
+  List<int>? genreIds;
+  int? id;
   @JsonKey(name: 'original_language')
-  String originalLanguage;
+  String? originalLanguage;
   @JsonKey(name: 'original_title')
-  String originalTitle;
-  String overview;
-  double popularity;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
   @JsonKey(name: 'poster_path')
-  String posterPath;
+  String? posterPath;
   @JsonKey(name: 'release_date')
-  String releaseDate;
-  String title;
-  bool video;
+  String? releaseDate;
+  String? title;
+  bool? video;
   @JsonKey(name: 'vote_average')
-  double voteAverage;
+  double? voteAverage;
   @JsonKey(name: 'vote_count')
-  int voteCount;
+  int? voteCount;
 
   Movie({
     required this.adult,
@@ -61,13 +61,13 @@ class Movie {
 
 @JsonSerializable()
 class MoviesResponse {
-  Dates dates;
-  int page;
-  List<Movie> results;
+  Dates? dates;
+  int? page;
+  List<Movie>? results;
   @JsonKey(name: 'total_pages')
-  int totalPages;
+  int? totalPages;
   @JsonKey(name: 'total_results')
-  int totalResults;
+  int? totalResults;
 
   MoviesResponse({
     required this.dates,

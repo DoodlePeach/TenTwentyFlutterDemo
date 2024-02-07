@@ -4,8 +4,8 @@ part 'movie_details.g.dart';
 
 @JsonSerializable()
 class Genre {
-  int id;
-  String name;
+  int? id;
+  String? name;
 
   Genre({required this.id, required this.name});
 
@@ -15,12 +15,12 @@ class Genre {
 
 @JsonSerializable()
 class ProductionCompany {
-  int id;
+  int? id;
   @JsonKey(name: 'logo_path')
   String? logoPath;
-  String name;
+  String? name;
   @JsonKey(name: 'origin_country')
-  String originCountry;
+  String? originCountry;
 
   ProductionCompany({
     required this.id,
@@ -37,8 +37,8 @@ class ProductionCompany {
 @JsonSerializable()
 class ProductionCountry {
   @JsonKey(name: 'iso_3166_1')
-  String iso31661;
-  String name;
+  String? iso31661;
+  String? name;
 
   ProductionCountry({required this.iso31661, required this.name});
 
@@ -50,10 +50,10 @@ class ProductionCountry {
 @JsonSerializable()
 class SpokenLanguage {
   @JsonKey(name: 'english_name')
-  String englishName;
+  String? englishName;
   @JsonKey(name: 'iso_639_1')
-  String iso6391;
-  String name;
+  String? iso6391;
+  String? name;
 
   SpokenLanguage({
     required this.englishName,
@@ -69,19 +69,19 @@ class SpokenLanguage {
 @JsonSerializable()
 class Video {
   @JsonKey(name: 'iso_639_1')
-  String iso6391;
+  String? iso6391;
   @JsonKey(name: 'iso_3166_1')
-  String iso31661;
-  String name;
-  String key;
-  String site;
-  int size;
-  String type;
+  String? iso31661;
+  String? name;
+  String? key;
+  String? site;
+  int? size;
+  String? type;
   @JsonKey(name: 'official')
-  bool official;
+  bool? official;
   @JsonKey(name: 'published_at')
-  String publishedAt;
-  String id;
+  String? publishedAt;
+  String? id;
 
   Video({
     required this.iso6391,
@@ -113,17 +113,17 @@ class Videos {
 @JsonSerializable()
 class Image {
   @JsonKey(name: 'aspect_ratio')
-  double aspectRatio;
-  int height;
+  double? aspectRatio;
+  int? height;
   @JsonKey(name: 'iso_639_1')
   String? iso6391;
   @JsonKey(name: 'file_path')
-  String filePath;
+  String? filePath;
   @JsonKey(name: 'vote_average')
-  double voteAverage;
+  double? voteAverage;
   @JsonKey(name: 'vote_count')
-  int voteCount;
-  int width;
+  int? voteCount;
+  int? width;
 
   Image({
     required this.aspectRatio,
@@ -142,11 +142,11 @@ class Image {
 @JsonSerializable()
 class Images {
   @JsonKey(name: 'backdrops')
-  List<Image> backdrops;
+  List<Image>? backdrops;
   @JsonKey(name: 'logos')
-  List<Image> logos;
+  List<Image>? logos;
   @JsonKey(name: 'posters')
-  List<Image> posters;
+  List<Image>? posters;
 
   Images({
     required this.backdrops,
@@ -160,45 +160,45 @@ class Images {
 
 @JsonSerializable()
 class MovieDetails {
-  bool adult;
+  bool? adult;
   @JsonKey(name: 'backdrop_path')
-  String backdropPath;
+  String? backdropPath;
   @JsonKey(name: 'belongs_to_collection')
-  dynamic belongsToCollection;
-  int budget;
-  List<Genre> genres;
-  String homepage;
-  int id;
+  dynamic? belongsToCollection;
+  int? budget;
+  List<Genre>? genres;
+  String? homepage;
+  int? id;
   @JsonKey(name: 'imdb_id')
-  String imdbId;
+  String? imdbId;
   @JsonKey(name: 'original_language')
-  String originalLanguage;
+  String? originalLanguage;
   @JsonKey(name: 'original_title')
-  String originalTitle;
-  String overview;
-  double popularity;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
   @JsonKey(name: 'poster_path')
-  String posterPath;
+  String? posterPath;
   @JsonKey(name: 'production_companies')
-  List<ProductionCompany> productionCompanies;
+  List<ProductionCompany>? productionCompanies;
   @JsonKey(name: 'production_countries')
-  List<ProductionCountry> productionCountries;
+  List<ProductionCountry>? productionCountries;
   @JsonKey(name: 'release_date')
-  String releaseDate;
-  int revenue;
-  int runtime;
+  String? releaseDate;
+  int? revenue;
+  int? runtime;
   @JsonKey(name: 'spoken_languages')
   List<SpokenLanguage> spokenLanguages;
-  String status;
-  String tagline;
-  String title;
-  bool video;
+  String? status;
+  String? tagline;
+  String? title;
+  bool? video;
   @JsonKey(name: 'vote_average')
-  double voteAverage;
+  double? voteAverage;
   @JsonKey(name: 'vote_count')
-  int voteCount;
-  Videos videos;
-  Images images;
+  int? voteCount;
+  Videos? videos;
+  Images? images;
 
   MovieDetails({
     required this.adult,

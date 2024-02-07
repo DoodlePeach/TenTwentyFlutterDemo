@@ -15,12 +15,16 @@ class TrailerViewModel extends BaseViewModel {
   TrailerViewModel({
     required this.video,
   }) : controller = YoutubePlayerController(
-          initialVideoId: video.key,
+          initialVideoId: video.key ?? "",
           flags: const YoutubePlayerFlags(
             autoPlay: true,
             hideControls: true,
           ),
-        )..toggleFullScreenMode();
+        )..toggleFullScreenMode() {
+    if (video.key == null) {
+      onExitRequired();
+    }
+  }
 
   @override
   void dispose() {

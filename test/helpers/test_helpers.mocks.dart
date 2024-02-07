@@ -13,6 +13,7 @@ import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:stacked_services/stacked_services.dart' as _i5;
 import 'package:tentweny_demo/models/movie_details.dart' as _i4;
 import 'package:tentweny_demo/models/movie_models.dart' as _i3;
+import 'package:tentweny_demo/models/movie_query.dart' as _i11;
 import 'package:tentweny_demo/services/api_service.dart' as _i10;
 
 // ignore_for_file: type=lint
@@ -720,16 +721,17 @@ class MockApiService extends _i1.Mock implements _i10.ApiService {
       ) as _i2.Dio);
 
   @override
-  _i8.Future<_i3.MoviesResponse> upcoming() => (super.noSuchMethod(
+  _i8.Future<_i3.MoviesResponse> fetchUpcoming(_i11.MovieQuery? query) =>
+      (super.noSuchMethod(
         Invocation.method(
           #upcoming,
-          [],
+          [query],
         ),
         returnValue: _i8.Future<_i3.MoviesResponse>.value(_FakeMoviesResponse_1(
           this,
           Invocation.method(
             #upcoming,
-            [],
+            [query],
           ),
         )),
         returnValueForMissingStub:
@@ -737,13 +739,37 @@ class MockApiService extends _i1.Mock implements _i10.ApiService {
           this,
           Invocation.method(
             #upcoming,
-            [],
+            [query],
           ),
         )),
       ) as _i8.Future<_i3.MoviesResponse>);
 
   @override
-  _i8.Future<_i4.MovieDetails> movieDetail(_i3.Movie? movie) =>
+  _i8.Future<_i3.MoviesResponse> searchMovies(_i11.MovieQuery? query) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #movies,
+          [query],
+        ),
+        returnValue: _i8.Future<_i3.MoviesResponse>.value(_FakeMoviesResponse_1(
+          this,
+          Invocation.method(
+            #movies,
+            [query],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i8.Future<_i3.MoviesResponse>.value(_FakeMoviesResponse_1(
+          this,
+          Invocation.method(
+            #movies,
+            [query],
+          ),
+        )),
+      ) as _i8.Future<_i3.MoviesResponse>);
+
+  @override
+  _i8.Future<_i4.MovieDetails> fetchMovieDetails(_i3.Movie? movie) =>
       (super.noSuchMethod(
         Invocation.method(
           #movieDetail,

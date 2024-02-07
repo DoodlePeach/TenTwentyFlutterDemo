@@ -7,8 +7,8 @@ part of 'movie_models.dart';
 // **************************************************************************
 
 Dates _$DatesFromJson(Map<String, dynamic> json) => Dates(
-      maximum: json['maximum'] as String,
-      minimum: json['minimum'] as String,
+      maximum: json['maximum'] as String?,
+      minimum: json['minimum'] as String?,
     );
 
 Map<String, dynamic> _$DatesToJson(Dates instance) => <String, dynamic>{
@@ -17,21 +17,21 @@ Map<String, dynamic> _$DatesToJson(Dates instance) => <String, dynamic>{
     };
 
 Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
-      adult: json['adult'] as bool,
-      backdropPath: json['backdrop_path'] as String,
+      adult: json['adult'] as bool?,
+      backdropPath: json['backdrop_path'] as String?,
       genreIds:
-          (json['genre_ids'] as List<dynamic>).map((e) => e as int).toList(),
-      id: json['id'] as int,
-      originalLanguage: json['original_language'] as String,
-      originalTitle: json['original_title'] as String,
-      overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
-      posterPath: json['poster_path'] as String,
-      releaseDate: json['release_date'] as String,
-      title: json['title'] as String,
-      video: json['video'] as bool,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+          (json['genre_ids'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      id: json['id'] as int?,
+      originalLanguage: json['original_language'] as String?,
+      originalTitle: json['original_title'] as String?,
+      overview: json['overview'] as String?,
+      popularity: (json['popularity'] as num?)?.toDouble(),
+      posterPath: json['poster_path'] as String?,
+      releaseDate: json['release_date'] as String?,
+      title: json['title'] as String?,
+      video: json['video'] as bool?,
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
+      voteCount: json['vote_count'] as int?,
     );
 
 Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
@@ -53,13 +53,15 @@ Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
 
 MoviesResponse _$MoviesResponseFromJson(Map<String, dynamic> json) =>
     MoviesResponse(
-      dates: Dates.fromJson(json['dates'] as Map<String, dynamic>),
-      page: json['page'] as int,
-      results: (json['results'] as List<dynamic>)
-          .map((e) => Movie.fromJson(e as Map<String, dynamic>))
+      dates: json['dates'] == null
+          ? null
+          : Dates.fromJson(json['dates'] as Map<String, dynamic>),
+      page: json['page'] as int?,
+      results: (json['results'] as List<dynamic>?)
+          ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalPages: json['total_pages'] as int,
-      totalResults: json['total_results'] as int,
+      totalPages: json['total_pages'] as int?,
+      totalResults: json['total_results'] as int?,
     );
 
 Map<String, dynamic> _$MoviesResponseToJson(MoviesResponse instance) =>

@@ -24,14 +24,18 @@ class TrailerView extends StackedView<TrailerViewModel> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
-        child: FittedBox(
+        child: SizedBox(
+          height: mq.height,
+          width: mq.width,
           child: Stack(
             alignment: Alignment.center,
             children: [
-              YoutubePlayer(
-                controller: viewModel.controller,
-                // showVideoProgressIndicator: true,
-                onEnded: (_) => viewModel.onExitRequired(),
+              Positioned.fill(
+                child: YoutubePlayer(
+                  controller: viewModel.controller,
+                  // showVideoProgressIndicator: true,
+                  onEnded: (_) => viewModel.onExitRequired(),
+                ),
               ),
               Positioned(
                 left: 20,

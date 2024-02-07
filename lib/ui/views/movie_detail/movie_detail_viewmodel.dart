@@ -14,14 +14,14 @@ class MovieDetailViewModel extends BaseViewModel {
   MovieDetails? details;
 
   Video? get playable {
-    final video = details?.videos.results
+    final video = details?.videos?.results
         .firstWhereOrNull((element) => element.type == 'Trailer');
 
-    return video ?? details?.videos.results.firstOrNull;
+    return video ?? details?.videos?.results.firstOrNull;
   }
 
   Image? get logo {
-    return details?.images.logos.firstOrNull;
+    return details?.images?.logos?.firstOrNull;
   }
 
   List<Genre> get genres => details?.genres ?? [];
@@ -34,7 +34,7 @@ class MovieDetailViewModel extends BaseViewModel {
     try {
       await runBusyFuture(
         () async {
-          details = await api.movieDetail(movie);
+          details = await api.fetchMovieDetails(movie);
         }(),
         busyObject: 'fetch-details',
         throwException: true,
@@ -45,8 +45,12 @@ class MovieDetailViewModel extends BaseViewModel {
   }
 
   void viewTrailer() {
-    if(playable != null) {
+    if (playable != null) {
       navigator.navigateToTrailerView(video: playable!);
     }
+  }
+
+  void bookTickets() {
+    navigator.navigateToBookTicketView();
   }
 }

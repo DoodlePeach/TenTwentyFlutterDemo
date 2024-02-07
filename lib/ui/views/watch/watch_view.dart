@@ -2,64 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tentweny_demo/ui/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:tentweny_demo/ui/views/watch/watch_app_bar.dart';
-import 'package:tentweny_demo/ui/views/watch/watch_upcoming_card.dart';
+import 'package:tentweny_demo/ui/views/watch/watch_search.dart';
+import 'package:tentweny_demo/ui/views/watch/watch_upcoming.dart';
 
 import '../../common/app_colors.dart';
-import '../../error_widget/custom_error_widget.dart';
 import 'watch_viewmodel.dart';
 
 class WatchView extends StackedView<WatchViewModel> {
   const WatchView({Key? key}) : super(key: key);
 
-  Widget _searchListView(WatchViewModel viewModel) {
-    return SliverList.builder(
-      itemCount: viewModel.filtered.length,
-      itemBuilder: (context, index) {
-        final item = viewModel.filtered[index];
-
-        return WatchUpcomingCard(
-          movie: item,
-          onTap: () => viewModel.onMovieTapped(item),
-        );
-      },
-    );
-  }
-
-  Widget _browsingView(WatchViewModel viewModel) {
-    return SliverList.builder(
-      itemCount: viewModel.currentResponse?.results.length ?? 0,
-      itemBuilder: (context, index) {
-        final item = viewModel.currentResponse!.results[index];
-        return WatchUpcomingCard(
-          movie: item,
-          onTap: () => viewModel.onMovieTapped(item),
-        );
-      },
-    );
-  }
-
   Widget buildLayout(WatchViewModel viewModel) {
-    if (viewModel.busy('upcoming')) {
-      return const SliverToBoxAdapter(
-        child: Center(
-          child: CircularProgressIndicator(
-            color: color1,
-          ),
-        ),
+    if (viewModel.searchBoolean) {
+      return WatchSearch(
+        watchViewModel: viewModel,
       );
-    } else if (viewModel.error('upcoming') != null) {
-      return SliverFillRemaining(
-        hasScrollBody: false,
-        child: Center(
-          child: CustomErrorWidget(
-            onRetry: viewModel.fetchUpcoming,
-          ),
-        ),
-      );
-    } else if (viewModel.searchBoolean) {
-      return _searchListView(viewModel);
     } else {
-      return _browsingView(viewModel);
+      return WatchUpcoming(
+        watchViewModel: viewModel,
+      );
     }
   }
 
@@ -93,6 +53,6 @@ class WatchView extends StackedView<WatchViewModel> {
 
   @override
   void onViewModelReady(WatchViewModel viewModel) {
-    viewModel.fetchUpcoming();
+    viewModel.fetchInitialUpcomingMovies();
   }
 }

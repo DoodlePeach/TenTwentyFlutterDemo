@@ -33,7 +33,8 @@ class WatchAppBar extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
-              onChanged: viewModel.onSearchTextFieldChanged,
+              controller: viewModel.appBarController,
+              onChanged: (s) => viewModel.fetchMovieByQuery(query: s),
               autofocus: true,
               cursorColor: color1,
               style: const TextStyle(
