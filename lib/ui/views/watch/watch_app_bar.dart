@@ -44,9 +44,9 @@ class WatchAppBar extends StatelessWidget {
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
                 enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white)),
+                    borderSide: BorderSide(color: Colors.transparent)),
                 focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white)),
+                    borderSide: BorderSide(color: Colors.transparent)),
                 hintText: 'TV shows, movies and more',
                 hintStyle: TextStyle(
                   color: const Color(0x202C434D).withOpacity(0.3),
